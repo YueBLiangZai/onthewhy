@@ -15,8 +15,8 @@ pipeline {
         }
         stage('publish project') {
             steps {
-               sh '''cd  /var/lib/jenkins/workspace/scpir
-                    ./scp_file.sh'''
+               sh '''cd /var/lib/jenkins/workspace
+                   scp -r test_pipeline/ k8s-master1:/root'''
                 echo 'publish project'
             }
         }    
