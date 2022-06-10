@@ -15,8 +15,7 @@ pipeline {
         }
         stage('publish project') {
             steps {
-               sh '''cd /var/lib/jenkins/workspace
-                   scp -r test_pipeline/ k8s-master1:/root'''
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master1', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'echo "11"', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/root', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'test_pipeline/new_test.html')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                 echo 'publish project'
             }
         }    
