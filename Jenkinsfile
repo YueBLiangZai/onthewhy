@@ -15,7 +15,8 @@ pipeline {
         }
         stage('publish project') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master1', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'echo "11"', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/root', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'test_pipeline/new_test.html')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master1', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''chmod +x scp_file.sh
+./scp_file.sh''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/root', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'new*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                 echo 'publish project'
             }
         }    
